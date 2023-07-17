@@ -76,7 +76,7 @@ function App(): JSX.Element {
           <Section title="Debug">
             <DebugInstructions />
           </Section>
-          <Section title="Learn More">CI</Section>
+          <Section title="Learn More">--CI--</Section>
           <LearnMoreLinks />
         </View>
       </ScrollView>
