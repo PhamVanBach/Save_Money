@@ -69,7 +69,7 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">Test CI 3 times</Section>
+          <Section title="Step One">Test CI</Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
