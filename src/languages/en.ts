@@ -4,6 +4,6 @@ export default {
   chartScreen: 'CHART',
   bottomTabScreen: 'BottomTab',
   splashScreen: 'Splash',
-  lastTransac: 'Last Transaction',
-  seeAll: 'See all',
+  lastTransac: 'LastTransaction',
+  seeAll: 'SeeAll',
 };

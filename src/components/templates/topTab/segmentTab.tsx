@@ -35,12 +35,11 @@ const SegmentTab: React.FC<Props> = ({
       <Animated.View />
       {state?.routes?.map((route: any, index: number) => {
         const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+        let label = '';
+        label = route.name;
+        if (options.tabBarLabel !== undefined) label = options.tabBarLabel;
+        if (options.title !== undefined) label = options.title;
+
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -57,7 +56,7 @@ const SegmentTab: React.FC<Props> = ({
 
         return (
           <TouchableOpacity
-            key={index}
+            key={`SEGMENT_KEY_${route.name}`}
             accessibilityRole="button"
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}

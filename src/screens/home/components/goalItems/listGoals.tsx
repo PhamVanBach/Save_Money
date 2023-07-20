@@ -11,7 +11,7 @@ const ListGoals = () => {
     {id: 2, name: 'Car', price: 1450, esTime: 'Sep', image: images.IC_JEEP},
     {id: 3, name: 'Trip', price: 1450, esTime: 'Jul', image: images.IC_TRIP},
   ];
-  //   const flatListRef = useRef();
+
   return (
     <FlatList
       data={goalsData}

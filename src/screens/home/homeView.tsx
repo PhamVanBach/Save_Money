@@ -1,7 +1,6 @@
 import {View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import homeStyle from './home.style';
-// import TopTabScreen from '../../components/templates/topTab/topTabScreen';
 import ListGoals from './components/goalItems/listGoals';
 import LoadingView from '../../components/attoms/loadingView';
 import LastTransaction from './components/transacItem/lastTransaction';
@@ -21,7 +20,6 @@ const HomeView = () => {
         </View>
       </View>
       <View style={homeStyle.spendingHistory}>
-        {/* <TopTabScreen /> */}
         <LastTransaction />
       </View>
       <LoadingView visible={visible} />

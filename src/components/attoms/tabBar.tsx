@@ -52,7 +52,7 @@ const MyTabBar: React.FC<Props> = ({state, descriptors, navigation}) => {
 
         return (
           <Pressable
-            key={index}
+            key={`ROUTE_KEY_${route.name}`}
             accessibilityRole="button"
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}

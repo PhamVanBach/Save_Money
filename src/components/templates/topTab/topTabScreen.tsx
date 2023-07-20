@@ -7,16 +7,30 @@ import ThisMonthTab from './thisMonthTab';
 import FutureTab from './futureTab';
 import SegmentTab from './segmentTab';
 
-const Tab = createMaterialTopTabNavigator();
+type SegmentProps = {
+  state: any;
+  descriptors: any;
+  navigation: any;
+  position: any;
+};
+
+type NewsChildParamList = {
+  ThisMonth: SegmentProps;
+  LastMonth: undefined;
+  Future: undefined;
+};
+
+const Tab = createMaterialTopTabNavigator<NewsChildParamList>();
 const TopTabScreen = () => {
+  const renderTabBar = (props: SegmentProps) => <SegmentTab {...props} />;
   return (
     <SafeAreaView style={topTabStyles.container}>
       <Tab.Navigator
-        initialRouteName={'This Month'}
+        initialRouteName={'ThisMonth'}
         screenOptions={{swipeEnabled: true}}
-        tabBar={(props: any) => <SegmentTab {...props} />}>
-        <Tab.Screen name={'Last Month'} component={LastMonthTab} />
-        <Tab.Screen name={'This Month'} component={ThisMonthTab} />
+        tabBar={renderTabBar}>
+        <Tab.Screen name={'LastMonth'} component={LastMonthTab} />
+        <Tab.Screen name={'ThisMonth'} component={ThisMonthTab} />
         <Tab.Screen name={'Future'} component={FutureTab} />
       </Tab.Navigator>
     </SafeAreaView>

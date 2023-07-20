@@ -14,8 +14,10 @@ import SCREENS from '../../../../constants/screens';
 import {strings} from '../../../../languages/strings';
 import homeStyle from '../../home.style';
 import TransacItem from './transacItem';
+import lastTransactionStyles from './lastTransactionStyles';
 
 const LastTransaction = () => {
+  const styles = lastTransactionStyles;
   const navigation = useNavigation();
   const [isLoadMore, setIsLoadMore] = useState(false);
   const transacData = [
@@ -102,6 +104,11 @@ const LastTransaction = () => {
       }, 3000);
     }
   };
+
+  const renderPlaceHolderMedia = () => (
+    <PlaceholderMedia style={styles.placeHolderMedia} />
+  );
+
   const renderLoading = () => {
     return (
       <>
@@ -114,19 +121,7 @@ const LastTransaction = () => {
               justifyContent: 'center',
               marginLeft: constants.screenWidth * 0.02,
             }}
-            Left={() => (
-              <PlaceholderMedia
-                style={[
-                  {
-                    width: 40,
-                    height: 40,
-                    borderRadius: 22,
-                    marginRight: constants.screenWidth * 0.06,
-                  },
-                  {backgroundColor: colors.black2},
-                ]}
-              />
-            )}>
+            Left={renderPlaceHolderMedia}>
             <PlaceholderLine
               style={{
                 marginTop: constants.screenHeight * 0.01,

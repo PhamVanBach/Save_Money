@@ -6,16 +6,6 @@ import * as Progress from 'react-native-progress';
 import {IRenderItem} from '../../../../types/renderItemType';
 import {constants} from '../../../../constants/constants';
 import colors from '../../../../constants/colors';
-// type Props = {
-//   item: {
-//     name: string;
-//     id: number;
-//     price: number;
-//     image: any;
-//     esTime: string;
-//   };
-//   index: number;
-// };
 
 const GoalItem: React.FC<IRenderItem> = ({item, index}) => {
   return (

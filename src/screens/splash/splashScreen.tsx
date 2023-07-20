@@ -20,7 +20,6 @@ const SplashView = () => {
   useEffect(() => {
     if (endVideo) {
       moveToHomeScreen();
-      return;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endVideo]);
