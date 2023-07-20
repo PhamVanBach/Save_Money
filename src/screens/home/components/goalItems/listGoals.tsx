@@ -12,11 +12,14 @@ const ListGoals = () => {
     {id: 3, name: 'Trip', price: 1450, esTime: 'Jul', image: images.IC_TRIP},
   ];
 
+  const renderItem = ({item, index}: any) => (
+    <GoalItem item={item} index={index} />
+  );
+
   return (
     <FlatList
       data={goalsData}
-      renderItem={({item, index}) => <GoalItem item={item} index={index} />}
-      //   ref={flatListRef}
+      renderItem={renderItem}
       snapToInterval={constants.screenWidth}
       disableIntervalMomentum={true}
       horizontal={true}

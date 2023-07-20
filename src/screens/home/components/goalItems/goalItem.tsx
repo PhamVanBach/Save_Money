@@ -3,7 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Pie from 'react-native-pie';
 import * as Progress from 'react-native-progress';
-import {IRenderItem} from '../../../../types/renderItemType';
+import {IRenderItem} from '@path/types/renderItemType';
 import {constants} from '../../../../constants/constants';
 import colors from '../../../../constants/colors';
 
@@ -15,6 +15,7 @@ const GoalItem: React.FC<IRenderItem> = ({item, index}) => {
         marginRight: index < 3 ? constants.screenWidth * 0.05 : 0,
         borderRadius: constants.screenWidth * 0.1,
         backgroundColor: item.id % 2 === 0 ? '#34a853' : '#4083f1',
+        alignItems: 'center',
       }}
       key={item.id}>
       <TouchableOpacity
