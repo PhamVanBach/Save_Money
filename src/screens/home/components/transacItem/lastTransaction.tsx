@@ -1,85 +1,99 @@
-import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import homeStyle from '../../home.style';
+import {useNavigation} from '@react-navigation/native';
+import React, {useRef, useState} from 'react';
+import {Animated, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {
+  Placeholder,
   PlaceholderLine,
   PlaceholderMedia,
-  Placeholder,
   Progressive,
 } from 'rn-placeholder';
-import images from '../../../../constants/images';
-import TransacItem from './transacItem';
 import colors from '../../../../constants/colors';
-import constants from '../../../../constants/constants';
-import {useNavigation} from '@react-navigation/native';
+import {constants, BG_HEADER_HEIGHT} from '../../../../constants/constants';
+import images from '../../../../constants/images';
 import SCREENS from '../../../../constants/screens';
 import {strings} from '../../../../languages/strings';
+import homeStyle from '../../home.style';
+import TransacItem from './transacItem';
 
 const LastTransaction = () => {
   const navigation = useNavigation();
   const [isLoadMore, setIsLoadMore] = useState(false);
-  let [transacData, setTransacData] = useState<any>([]);
-  useEffect(() => {
-    setTransacData([
-      {
-        id: Math.floor(Math.random() * 100),
-        title: 'House',
-        subTitle: 'Nov',
-        price: 1450,
-        image: images.IC_HOUSE,
-        type: 'add',
-        date: '2016-05-02T00:00:00',
-      },
-      {
-        id: Math.floor(Math.random() * 100),
-        title: 'House',
-        subTitle: 'Nov',
-        price: 1450,
-        image: images.IC_HOUSE,
-        type: 'minus',
-        date: '2016-05-02T00:00:00',
-      },
-      {
-        id: Math.floor(Math.random() * 100),
-        title: 'House',
-        subTitle: 'Nov',
-        price: 1450,
-        image: images.IC_HOUSE,
-        type: 'add',
-        date: '2016-05-02T00:00:00',
-      },
-      {
-        id: Math.floor(Math.random() * 100),
-        title: 'House',
-        subTitle: 'Nov',
-        price: 1450,
-        image: images.IC_HOUSE,
-        type: 'add',
-        date: '2016-05-02T00:00:00',
-      },
-      {
-        id: Math.floor(Math.random() * 100),
-        title: 'House',
-        subTitle: 'Nov',
-        price: 1450,
-        image: images.IC_HOUSE,
-        type: 'minus',
-        date: '2016-05-02T00:00:00',
-      },
-      {
-        id: Math.floor(Math.random() * 100),
-        title: 'House',
-        subTitle: 'Nov',
-        price: 1450,
-        image: images.IC_HOUSE,
-        type: 'add',
-        date: '2016-05-02T00:00:00',
-      },
-    ]);
-  }, []);
+  const transacData = [
+    {
+      id: 1,
+      title: 'House',
+      subTitle: 'Nov',
+      price: 1450,
+      image: images.IC_HOUSE,
+      type: 'add',
+      date: '2016-05-02T00:00:00',
+    },
+    {
+      id: 2,
+      title: 'House 1',
+      subTitle: 'Nov',
+      price: 1450,
+      image: images.IC_HOUSE,
+      type: 'minus',
+      date: '2016-05-02T00:00:00',
+    },
+    {
+      id: 3,
+      title: 'House 2',
+      subTitle: 'Nov',
+      price: 1450,
+      image: images.IC_HOUSE,
+      type: 'add',
+      date: '2016-05-02T00:00:00',
+    },
+    {
+      id: 4,
+      title: 'House 3',
+      subTitle: 'Nov',
+      price: 1450,
+      image: images.IC_HOUSE,
+      type: 'add',
+      date: '2016-05-02T00:00:00',
+    },
+    {
+      id: 5,
+      title: 'House 4',
+      subTitle: 'Nov',
+      price: 1450,
+      image: images.IC_HOUSE,
+      type: 'minus',
+      date: '2016-05-02T00:00:00',
+    },
+    {
+      id: 6,
+      title: 'House 5',
+      subTitle: 'Nov',
+      price: 1450,
+      image: images.IC_HOUSE,
+      type: 'add',
+      date: '2016-05-02T00:00:00',
+    },
+  ];
+
+  const flatListRef = useRef<FlatList>(null);
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const mainHeaderOpacity = scrollY.interpolate({
+    inputRange: [0, BG_HEADER_HEIGHT / 1.2, BG_HEADER_HEIGHT],
+    outputRange: [1, 0, 0],
+    extrapolate: 'clamp',
+  });
+
+  const subHeaderOpacity = scrollY.interpolate({
+    inputRange: [0, BG_HEADER_HEIGHT * 0.8, BG_HEADER_HEIGHT * 0.9],
+    outputRange: [0, 0, 1],
+    extrapolate: 'clamp',
+  });
+
   const onTouchSeeAll = () => {
     navigation.navigate(SCREENS.CHART_SCREEN.name as never);
   };
+
   const fetchTransacData = () => {
     if (transacData.length < 50) {
       setIsLoadMore(true);
@@ -94,7 +108,6 @@ const LastTransaction = () => {
         {isLoadMore ? (
           <Placeholder
             Animation={Progressive}
-            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               borderRadius: 4,
               alignItems: 'center',
@@ -104,7 +117,6 @@ const LastTransaction = () => {
             Left={() => (
               <PlaceholderMedia
                 style={[
-                  // eslint-disable-next-line react-native/no-inline-styles
                   {
                     width: 40,
                     height: 40,
@@ -144,18 +156,39 @@ const LastTransaction = () => {
         </TouchableOpacity>
       </View>
       <View style={homeStyle.lastTransacList}>
-        <FlatList
+        <Animated.FlatList
           data={transacData}
           renderItem={({item, index}) => (
             <TransacItem item={item} index={index} />
           )}
-          // ref={flatListRef}
+          ref={flatListRef}
           disableIntervalMomentum={true}
           onEndReached={fetchTransacData}
           onEndReachedThreshold={0.7}
           ListFooterComponent={renderLoading}
+          onScroll={Animated.event(
+            [{nativeEvent: {contentOffset: {y: scrollY}}}],
+            {useNativeDriver: true},
+          )}
+          scrollEventThrottle={16}
         />
       </View>
+      <Animated.View
+        style={{
+          height: 50,
+          width: constants.screenWidth,
+          backgroundColor: 'red',
+          opacity: mainHeaderOpacity,
+        }}
+      />
+      <Animated.View
+        style={{
+          height: 50,
+          width: constants.screenWidth,
+          backgroundColor: 'red',
+          opacity: subHeaderOpacity,
+        }}
+      />
     </View>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList} from 'react-native-gesture-handler';
-import constants from '../../../../constants/constants';
+import {constants} from '../../../../constants/constants';
 import images from '../../../../constants/images';
 import GoalItem from './goalItem';
 

@@ -4,7 +4,7 @@ import React from 'react';
 import Pie from 'react-native-pie';
 import * as Progress from 'react-native-progress';
 import {IRenderItem} from '../../../../types/renderItemType';
-import constants from '../../../../constants/constants';
+import {constants} from '../../../../constants/constants';
 import colors from '../../../../constants/colors';
 // type Props = {
 //   item: {
@@ -152,7 +152,7 @@ const GoalItem: React.FC<IRenderItem> = ({item, index}) => {
               70% Saved
             </Text>
             <Progress.Bar
-              progress={0.3}
+              progress={0.7}
               width={constants.screenWidth * 0.15}
               color={colors.white}
               style={{marginLeft: 5}}

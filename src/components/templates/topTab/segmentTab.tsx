@@ -1,7 +1,7 @@
 /* eslint-disable no-sparse-arrays */
 import {View, Text, StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import React, {memo} from 'react';
-import constants from '../../../constants/constants';
+import {constants} from '../../../constants/constants';
 import colors from '../../../constants/colors';
 type Props = {
   state: any;

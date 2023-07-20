@@ -14,7 +14,7 @@ const TopTabScreen = () => {
       <Tab.Navigator
         initialRouteName={'This Month'}
         screenOptions={{swipeEnabled: true}}
-        tabBar={props => <SegmentTab {...props} />}>
+        tabBar={(props: any) => <SegmentTab {...props} />}>
         <Tab.Screen name={'Last Month'} component={LastMonthTab} />
         <Tab.Screen name={'This Month'} component={ThisMonthTab} />
         <Tab.Screen name={'Future'} component={FutureTab} />

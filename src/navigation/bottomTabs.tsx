@@ -15,7 +15,7 @@ const BottomTabs = () => {
         headerShown: false,
         tabBarInactiveTintColor: 'gray',
       })}
-      tabBar={props => <MyTabBar {...props} />}>
+      tabBar={(props: any) => <MyTabBar {...props} />}>
       <Tab.Screen name={SCREENS.HOME_SCREEN.name} component={HomeView} />
       <Tab.Screen name={SCREENS.GOALS_SCREEN.name} component={GoalsView} />
       <Tab.Screen name={SCREENS.CHART_SCREEN.name} component={ChartView} />

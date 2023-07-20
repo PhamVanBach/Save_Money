@@ -6,43 +6,52 @@ import SplashView from '../screens/splash/splashScreen';
 import HomeView from '../screens/home/homeView';
 import ChartView from '../screens/chart/chartView';
 import GoalsView from '../screens/goals/goalsView';
+import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const AppNavigator = () => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<any>();
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        presentation: 'transparentModal',
-      }}
-      initialRouteName={SCREENS.SPLASH_SCREEN.name}>
-      <Stack.Screen name={SCREENS.SPLASH_SCREEN.name} component={SplashView} />
-      <Stack.Screen
-        name={SCREENS.BOTTOMTAB_SCREEN.name}
-        component={BottomTabs}
-      />
-      <Stack.Screen
-        name={SCREENS.HOME_SCREEN.name}
-        component={HomeView}
-        options={{
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-        }}
-      />
-      <Stack.Screen
-        name={SCREENS.CHART_SCREEN.name}
-        component={ChartView}
-        options={{
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-        }}
-      />
-      <Stack.Screen
-        name={SCREENS.GOALS_SCREEN.name}
-        component={GoalsView}
-        options={{
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-        }}
-      />
-    </Stack.Navigator>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            presentation: 'transparentModal',
+          }}
+          initialRouteName={SCREENS.SPLASH_SCREEN.name}>
+          <Stack.Screen
+            name={SCREENS.SPLASH_SCREEN.name}
+            component={SplashView}
+          />
+          <Stack.Screen
+            name={SCREENS.BOTTOMTAB_SCREEN.name}
+            component={BottomTabs}
+          />
+          <Stack.Screen
+            name={SCREENS.HOME_SCREEN.name}
+            component={HomeView}
+            options={{
+              ...TransitionPresets.ModalSlideFromBottomIOS,
+            }}
+          />
+          <Stack.Screen
+            name={SCREENS.CHART_SCREEN.name}
+            component={ChartView}
+            options={{
+              ...TransitionPresets.ModalSlideFromBottomIOS,
+            }}
+          />
+          <Stack.Screen
+            name={SCREENS.GOALS_SCREEN.name}
+            component={GoalsView}
+            options={{
+              ...TransitionPresets.ModalSlideFromBottomIOS,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

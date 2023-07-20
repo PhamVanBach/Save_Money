@@ -16,6 +16,7 @@ const SplashView = () => {
     setEndVideo(true);
     moveToHomeScreen();
   }
+
   useEffect(() => {
     if (endVideo) {
       moveToHomeScreen();
@@ -23,6 +24,7 @@ const SplashView = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endVideo]);
+
   return (
     <View style={[splashStyles.splashScreenContainer]}>
       <Animated.View style={splashStyles.container}>

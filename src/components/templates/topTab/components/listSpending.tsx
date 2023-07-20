@@ -3,7 +3,7 @@ import {View, Text, FlatList} from 'react-native';
 import React, {FC} from 'react';
 import images from '../../../../constants/images';
 import colors from '../../../../constants/colors';
-import constants from '../../../../constants/constants';
+import {constants} from '../../../../constants/constants';
 type Props = {
   item: {
     id: number;
